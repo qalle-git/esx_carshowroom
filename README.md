@@ -1,8 +1,15 @@
-# esx_carprice
+# esx_carshowroom
 
-Requirements:
-esx_vehicleshop
+[REQUIREMENTS]
+  
+* ESX Support
+  * esx_vehicleshop => https://github.com/ESX-Org/esx_vehicleshop
 
-1. Drag into resources
-2. Add start esx_carprice to server.cfg
-3. Done!
+[INSTALLATION]
+
+1) CD in your resources/[esx] folder
+
+2) Add this in your server.cfg :
+``start esx_carshowroom``
+
+lua
