@@ -144,16 +144,16 @@ function OpenShopMenu ()
       ESX.UI.Menu.Open(
         'default', GetCurrentResourceName(), 'shop_confirm',
         {
-          title = '' .. vehicleData.name .. _U('costs') .. vehicleData.price .. _U('currency'),
+          title = '' .. vehicleData.name .. _U('costs') .. vehicleData.price * Config.Price .. _U('currency'),
           align = 'top-left',
           elements = {
-            {label = '' .. vehicleData.name .. _U('costs') .. vehicleData.price * 2 .. _U('currency'), value = 'yes'},
+            {label = '' .. vehicleData.name .. _U('costs') .. vehicleData.price * Config.Price .. _U('currency'), value = 'yes'},
             {label = _U('back'), value = 'no'},
           },
         },
         function (data2, menu2)
           if data2.current.value == 'yes' then
-             sendNotification(_U('contact_dealer') .. vehicleData.price * 2 .. _U('currency'), 'warning', 5000)
+             sendNotification(_U('contact_dealer') .. vehicleData.price * Config.Price .. _U('currency'), 'warning', 5000)
           end
 
           if data2.current.value == 'no' then
