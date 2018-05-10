@@ -92,7 +92,7 @@ function OpenShopMenu ()
 
   FreezeEntityPosition(playerPed, true)
   SetEntityVisible(playerPed, false)
-  SetEntityCoords(playerPed, Config.Zones.Katalog.Pos.x, Config.Zones.Katalog.Pos.y, Config.Zones.Katalog.Pos.z)
+  SetEntityCoords(playerPed, Config.Zones.ShopInside.Pos.x, Config.Zones.ShopInside.Pos.y, Config.Zones.ShopInside.Pos.z)
 
   local vehiclesByCategory = {}
   local elements           = {}
@@ -144,16 +144,16 @@ function OpenShopMenu ()
       ESX.UI.Menu.Open(
         'default', GetCurrentResourceName(), 'shop_confirm',
         {
-          title = '' .. vehicleData.name .. _U('costs') .. vehicleData.price * Config.Price .. _U('currency'),
+          title = vehicleData.name,
           align = 'top-left',
           elements = {
-            {label = '' .. vehicleData.name .. _U('costs') .. vehicleData.price * Config.Price .. _U('currency'), value = 'yes'},
+            {label = '' .. vehicleData.name .. _U('costs') .. vehicleData.price * 2 .. _U('currency'), value = 'yes'},
             {label = _U('back'), value = 'no'},
           },
         },
         function (data2, menu2)
           if data2.current.value == 'yes' then
-             sendNotification(_U('contact_dealer') .. vehicleData.price * Config.Price .. _U('currency'), 'warning', 5000)
+             sendNotification(_U('contact_dealer') .. vehicleData.price * 2 .. _U('currency'), 'warning', 5000)
           end
 
           if data2.current.value == 'no' then
@@ -171,12 +171,16 @@ function OpenShopMenu ()
 
       menu.close()
 
+        DoScreenFadeOut(1000)
+        Citizen.Wait(1000)
+        DoScreenFadeIn(1000)
+
       DeleteKatalogVehicles()
 
       local playerPed = GetPlayerPed(-1)
 
       CurrentAction     = 'shop_menu'
-      CurrentActionMsg  = 'Ta nu hissen upp om du tittat klart.'
+      CurrentActionMsg  = 'shop menu'
       CurrentActionData = {}
 
       FreezeEntityPosition(playerPed, false)
@@ -194,10 +198,10 @@ function OpenShopMenu ()
       DeleteKatalogVehicles()
 
       ESX.Game.SpawnLocalVehicle(vehicleData.model, {
-        x = Config.Zones.Katalog.Pos.x,
-        y = Config.Zones.Katalog.Pos.y,
-        z = Config.Zones.Katalog.Pos.z
-      }, Config.Zones.Katalog.Heading, function(vehicle)
+        x = Config.Zones.ShopInside.Pos.x,
+        y = Config.Zones.ShopInside.Pos.y,
+        z = Config.Zones.ShopInside.Pos.z
+      }, Config.Zones.ShopInside.Heading, function(vehicle)
         table.insert(LastVehicles, vehicle)
         TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
         FreezeEntityPosition(vehicle, true)
@@ -208,10 +212,10 @@ function OpenShopMenu ()
   DeleteKatalogVehicles()
 
   ESX.Game.SpawnLocalVehicle(firstVehicleData.model, {
-    x = Config.Zones.Katalog.Pos.x,
-    y = Config.Zones.Katalog.Pos.y,
-    z = Config.Zones.Katalog.Pos.z
-  }, Config.Zones.Katalog.Heading, function (vehicle)
+    x = Config.Zones.ShopInside.Pos.x,
+    y = Config.Zones.ShopInside.Pos.y,
+    z = Config.Zones.ShopInside.Pos.z
+  }, Config.Zones.ShopInside.Heading, function (vehicle)
     table.insert(LastVehicles, vehicle)
     TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
     FreezeEntityPosition(vehicle, true)

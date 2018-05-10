@@ -9,6 +9,13 @@ Config.Price = 2 -- this is times how much it should show
 
 Config.Zones = {
 
+  ShopInside = {
+    Pos     = { x = 228.26 , y = -986.57, z = -99.96 },
+    Size    = { x = 1.5, y = 1.5, z = 1.0 },
+    Heading = 177.28,
+    Type    = -1,
+  },
+
   Katalog = {
     Pos     = { x = 228.18 , y = -995.48, z = -99.96 },
     Size    = { x = 1.5, y = 1.5, z = 1.0 },
